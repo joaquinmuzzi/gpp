@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Exposición - TP Fábrica de PCBs</title>
+    <style>
+        :root {
+            --primary: #1a365d;
+            --secondary: #2c5282;
+            --accent: #ed8936;
+            --success: #38a169;
+            --danger: #e53e3e;
+            --warning: #d69e2e;
+            --light: #f7fafc;
+            --dark: #1a202c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: var(--dark);
+            background: var(--light);
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        h1 small {
+            display: block;
+            font-weight: normal;
+            font-size: 0.5em;
+            opacity: 0.9;
+            margin-top: 10px;
+        }
+        
+        h2 {
+            color: var(--primary);
+            border-left: 5px solid var(--accent);
+            padding-left: 15px;
+            margin: 40px 0 20px 0;
+        }
+        
+        h3 {
+            color: var(--secondary);
+            margin: 25px 0 15px 0;
+        }
+        
+        h4 {
+            color: var(--dark);
+            margin: 20px 0 10px 0;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .slide-ref {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+        }
+        
+        .slide-ref h3 {
+            color: white;
+            margin-top: 0;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+            padding-bottom: 10px;
+        }
+        
+        .slide-ref .expositor {
+            background: var(--accent);
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .slide-ref ul {
+            margin-left: 20px;
+        }
+        
+        .slide-ref li {
+            margin-bottom: 8px;
+        }
+        
+        .key-concept {
+            background: #ebf8ff;
+            border-left: 4px solid var(--secondary);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .key-concept strong {
+            color: var(--primary);
+        }
+        
+        .warning-box {
+            background: #fffaf0;
+            border-left: 4px solid var(--warning);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .danger-box {
+            background: #fff5f5;
+            border-left: 4px solid var(--danger);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .success-box {
+            background: #f0fff4;
+            border-left: 4px solid var(--success);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th {
+            background: var(--primary);
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        tr:nth-child(even) {
+            background: #f7fafc;
+        }
+        
+        tr:hover {
+            background: #edf2f7;
+        }
+        
+        .formula {
+            background: var(--dark);
+            color: #68d391;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            margin: 20px 0;
+        }
+        
+        .timeline-item {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .timeline-item .date {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        
+        .timeline-item .label {
+            font-size: 0.85em;
+            opacity: 0.9;
+        }
+        
+        .timeline-arrow {
+            font-size: 2em;
+            padding: 0 10px;
+        }
+        
+        ul, ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .toc {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .toc h3 {
+            margin-top: 0;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 10px;
+        }
+        
+        .toc a {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+        
+        .toc a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #fef08a 0%, #fef08a 100%);
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        
+        .numero-grande {
+            font-size: 3em;
+            font-weight: bold;
+            color: var(--accent);
+            display: block;
+            text-align: center;
+        }
+        
+        .preguntas-frecuentes {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin: 20px 0;
+        }
+        
+        .pregunta {
+            font-weight: bold;
+            color: var(--primary);
+            margin-top: 15px;
+        }
+        
+        .respuesta {
+            background: #f7fafc;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-style: italic;
+        }
+        
+        @media print {
+            body {
+                padding: 0;
+            }
+            .slide-ref {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h1>
+    🏭 Guía de Exposición: Fábrica de PCBs
+    <small>Gestión de Procesos Productivos - Viabilidad Operativa y Cronogramas</small>
+</h1>
+
+<div class="toc">
+    <h3>📑 Índice de Contenidos</h3>
+    <ol>
+        <li><a href="#contexto">Contexto de la Empresa y la Crisis</a></li>
+        <li><a href="#viabilidad">Viabilidad Financiera (Punto de Equilibrio)</a></li>
+        <li><a href="#tareas">Las 6 Tareas del Proyecto</a></li>
+        <li><a href="#cpm">Método CPM y Ruta Crítica</a></li>
+        <li><a href="#hitos">Los 3 Hitos de Control</a></li>
+        <li><a href="#crisis">El Problema Sorpresa (Crisis de Humedad)</a></li>
+        <li><a href="#crashing">Estrategia de Mitigación: Crashing</a></li>
+        <li><a href="#conclusion">Conclusión y Postura Reactiva</a></li>
+        <li><a href="#slides">Guía por Diapositiva</a></li>
+        <li><a href="#preguntas">Preguntas Frecuentes</a></li>
+        <li><a href="#glosario">Glosario de Términos</a></li>
+    </ol>
+</div>
+
+<!-- ==================== SECCIÓN 1: CONTEXTO ==================== -->
+<h2 id="contexto">1. Contexto de la Empresa y la Crisis</h2>
+
+<h3>¿Qué es una fábrica de PCBs?</h3>
+<p>
+    Una <strong>PCB (Printed Circuit Board)</strong> es una placa de circuito impreso, esas placas verdes que ves dentro de cualquier dispositivo electrónico (computadoras, celulares, televisores). La fábrica que analizamos se dedica a producir estas placas mediante un proceso industrial que incluye:
+</p>
+<ul>
+    <li><strong>Decapado químico:</strong> Se aplican químicos para crear las pistas de cobre</li>
+    <li><strong>Perforado:</strong> Se hacen los agujeros donde irán los componentes</li>
+    <li><strong>Soldadura:</strong> Se montan y sueldan los componentes electrónicos</li>
+</ul>
+
+<h3>La Situación de Crisis</h3>
+
+<div class="danger-box">
+    <strong>⚠️ PROBLEMA PRINCIPAL:</strong> Exceso de humedad en el ambiente de la planta, lo que arruina la adherencia del cobre a las pistas de resina. Esto causa que muchas placas salgan defectuosas.
+</div>
+
+<table>
+    <tr>
+        <th>Indicador</th>
+        <th>Antes de la Crisis</th>
+        <th>Después de la Crisis</th>
+    </tr>
+    <tr>
+        <td>Rendimiento Operativo</td>
+        <td style="color: green; font-weight: bold;">70%</td>
+        <td style="color: red; font-weight: bold;">42%</td>
+    </tr>
+    <tr>
+        <td>Producción Mensual</td>
+        <td>~1400 placas</td>
+        <td>~840 placas</td>
+    </tr>
+    <tr>
+        <td>Tasa de Fallas en Testing</td>
+        <td>~10-15%</td>
+        <td>40%</td>
+    </tr>
+</table>
+
+<h3>Capacidad de la Planta</h3>
+<div class="key-concept">
+    <strong>Capacidad Máxima Instalada:</strong> 2000 unidades mensuales<br>
+    <strong>Utilización Normal (70%):</strong> 1400 unidades mensuales<br>
+    <strong>Utilización en Crisis (42%):</strong> ~840 unidades mensuales
+</div>
+
+<!-- ==================== SECCIÓN 2: VIABILIDAD ==================== -->
+<h2 id="viabilidad">2. Viabilidad Financiera (Punto de Equilibrio)</h2>
+
+<p>
+    El <strong>Punto de Equilibrio</strong> es la cantidad mínima de unidades que la fábrica debe producir y vender para cubrir todos sus costos (ni ganar ni perder dinero).
+</p>
+
+<h3>Los Números Clave</h3>
+<table>
+    <tr>
+        <th>Concepto</th>
+        <th>Valor</th>
+        <th>Explicación</th>
+    </tr>
+    <tr>
+        <td>Costos Fijos (CF)</td>
+        <td><strong>$950.000/mes</strong></td>
+        <td>Alquiler, sueldos, mantenimiento, etc. (no cambian)</td>
+    </tr>
+    <tr>
+        <td>Costo Variable (CV)</td>
+        <td><strong>$800/unidad</strong></td>
+        <td>Cobre, resinas, químicos, componentes</td>
+    </tr>
+    <tr>
+        <td>Precio de Venta (PV)</td>
+        <td><strong>$3.500/unidad</strong></td>
+        <td>Lo que paga el cliente por cada placa</td>
+    </tr>
+    <tr>
+        <td>Margen de Contribución</td>
+        <td><strong>$2.700/unidad</strong></td>
+        <td>PV - CV = $3.500 - $800</td>
+    </tr>
+</table>
+
+<h3>Cálculo del Punto de Equilibrio</h3>
+<div class="formula">
+PE = Costos Fijos / (Precio de Venta - Costo Variable)<br>
+PE = $950.000 / ($3.500 - $800)<br>
+PE = $950.000 / $2.700<br>
+<strong>PE = 352 unidades/mes</strong>
+</div>
+
+<div class="success-box">
+    <span class="numero-grande">352</span>
+    <p style="text-align: center; margin: 0;">
+        <strong>unidades mínimas por mes</strong><br>
+        Por debajo de este número, la fábrica pierde dinero.
+    </p>
+</div>
+
+<div class="key-concept">
+    <strong>¿Qué significa el Margen de Contribución?</strong><br>
+    Cada placa vendida aporta $2.700 para cubrir los costos fijos. Después de vender 352 placas, los costos fijos están cubiertos y cada placa adicional es ganancia pura (menos el costo variable).
+</div>
+
+<!-- ==================== SECCIÓN 3: TAREAS ==================== -->
+<h2 id="tareas">3. Las 6 Tareas del Proyecto (A-F)</h2>
+
+<p>El proyecto de producción se divide en 6 tareas secuenciales:</p>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Tarea</th>
+        <th>Duración</th>
+        <th>¿Qué se hace?</th>
+        <th>¿Es Crítica?</th>
+    </tr>
+    <tr>
+        <td><strong>A</strong></td>
+        <td>Relevamiento y Planificación</td>
+        <td>6 días</td>
+        <td>Diagnóstico de capacidad, programar horas extra</td>
+        <td style="color: red;">SÍ</td>
+    </tr>
+    <tr>
+        <td><strong>B</strong></td>
+        <td>Logística de Abastecimiento</td>
+        <td>4 días</td>
+        <td>Comprar insumos: cobre, resinas, químicos</td>
+        <td style="color: green;">NO (holgura: 2 días)</td>
+    </tr>
+    <tr>
+        <td><strong>C</strong></td>
+        <td>Set-Up y Puesta a Punto</td>
+        <td>8 días</td>
+        <td>Calibrar ambiente (humedad/temperatura), preparar máquinas</td>
+        <td style="color: red;">SÍ</td>
+    </tr>
+    <tr>
+        <td><strong>D</strong></td>
+        <td>Proceso Productivo Central</td>
+        <td>16 días</td>
+        <td>Decapado químico, perforado, soldadura</td>
+        <td style="color: red;">SÍ</td>
+    </tr>
+    <tr>
+        <td><strong>E</strong></td>
+        <td>Control de Calidad (Testing)</td>
+        <td>12 días</td>
+        <td>Probar placas, enviar a re-proceso o scrap</td>
+        <td style="color: red;">SÍ</td>
+    </tr>
+    <tr>
+        <td><strong>F</strong></td>
+        <td>Logística de Salida</td>
+        <td>4 días</td>
+        <td>Empaque antiestático, despacho, disposición de residuos</td>
+        <td style="color: red;">SÍ</td>
+    </tr>
+</table>
+
+<h3>Duración Total del Proyecto</h3>
+<div class="formula">
+6 (A) + 8 (C) + 16 (D) + 12 (E) + 4 (F) = <strong>46 días laborables</strong>
+</div>
+<p><em>Nota: La Tarea B (4 días) corre en paralelo con A, por eso no suma al total.</em></p>
+
+<h3>El Lazo de Re-Proceso (Loop D-E)</h3>
+<div class="key-concept">
+    Cuando una placa falla en Testing (Tarea E), puede pasar dos cosas:
+    <ul>
+        <li><strong>Falla menor</strong> (puentes de estaño, soldadura fría): Vuelve a Tarea D para re-trabajo</li>
+        <li><strong>Falla crítica</strong> (placa quemada, pistas cortadas): Va al <strong>Scrap</strong> (descarte definitivo)</li>
+    </ul>
+    Con el 40% de fallas actuales, el lazo de re-proceso es fundamental para recuperar placas.
+</div>
+
+<!-- ==================== SECCIÓN 4: CPM ==================== -->
+<h2 id="cpm">4. Método CPM y Ruta Crítica</h2>
+
+<h3>¿Qué es el CPM?</h3>
+<p>
+    <strong>CPM (Critical Path Method)</strong> es un método para calcular la duración mínima de un proyecto e identificar qué tareas no pueden retrasarse.
+</p>
+
+<h3>La Tabla de Tiempos</h3>
+<table>
+    <tr>
+        <th>Tarea</th>
+        <th>DUR</th>
+        <th>ES</th>
+        <th>EF</th>
+        <th>LS</th>
+        <th>LF</th>
+        <th>Holgura</th>
+    </tr>
+    <tr>
+        <td>A</td>
+        <td>6</td>
+        <td>0</td>
+        <td>6</td>
+        <td>0</td>
+        <td>6</td>
+        <td style="color: red; font-weight: bold;">0 días</td>
+    </tr>
+    <tr>
+        <td>B</td>
+        <td>4</td>
+        <td>0</td>
+        <td>4</td>
+        <td>2</td>
+        <td>6</td>
+        <td style="color: green; font-weight: bold;">2 días</td>
+    </tr>
+    <tr>
+        <td>C</td>
+        <td>8</td>
+        <td>6</td>
+        <td>14</td>
+        <td>6</td>
+        <td>14</td>
+        <td style="color: red; font-weight: bold;">0 días</td>
+    </tr>
+    <tr>
+        <td>D</td>
+        <td>16</td>
+        <td>14</td>
+        <td>30</td>
+        <td>14</td>
+        <td>30</td>
+        <td style="color: red; font-weight: bold;">0 días</td>
+    </tr>
+    <tr>
+        <td>E</td>
+        <td>12</td>
+        <td>30</td>
+        <td>42</td>
+        <td>30</td>
+        <td>42</td>
+        <td style="color: red; font-weight: bold;">0 días</td>
+    </tr>
+    <tr>
+        <td>F</td>
+        <td>4</td>
+        <td>42</td>
+        <td>46</td>
+        <td>42</td>
+        <td>46</td>
+        <td style="color: red; font-weight: bold;">0 días</td>
+    </tr>
+</table>
+
+<h3>¿Qué significa cada columna?</h3>
+<table>
+    <tr>
+        <th>Sigla</th>
+        <th>Nombre</th>
+        <th>Pregunta que responde</th>
+    </tr>
+    <tr>
+        <td><strong>ES</strong></td>
+        <td>Early Start (Inicio Temprano)</td>
+        <td>¿Cuándo puedo empezar <em>como mínimo</em>?</td>
+    </tr>
+    <tr>
+        <td><strong>EF</strong></td>
+        <td>Early Finish (Fin Temprano)</td>
+        <td>¿Cuándo termino <em>si empiezo lo antes posible</em>?</td>
+    </tr>
+    <tr>
+        <td><strong>LS</strong></td>
+        <td>Late Start (Inicio Tardío)</td>
+        <td>¿Cuándo puedo empezar <em>como máximo</em> sin retrasar el proyecto?</td>
+    </tr>
+    <tr>
+        <td><strong>LF</strong></td>
+        <td>Late Finish (Fin Tardío)</td>
+        <td>¿Cuándo debo terminar <em>sí o sí</em>?</td>
+    </tr>
+    <tr>
+        <td><strong>Holgura</strong></td>
+        <td>Slack/Float</td>
+        <td>¿Cuántos días de colchón tengo? (LS - ES)</td>
+    </tr>
+</table>
+
+<h3>La Ruta Crítica</h3>
+<div class="danger-box">
+    <strong>RUTA CRÍTICA: A → C → D → E → F</strong><br><br>
+    Son las tareas con <strong>Holgura = 0</strong>. Si cualquiera de estas se retrasa un día, todo el proyecto se retrasa un día.
+</div>
+
+<h3>¿Por qué B tiene holgura?</h3>
+<div class="key-concept">
+    <strong>Tarea A:</strong> 6 días (ES=0, EF=6)<br>
+    <strong>Tarea B:</strong> 4 días (ES=0, EF=4)<br><br>
+    Ambas empiezan el día 0 y corren en paralelo. Pero <strong>C depende de A</strong>, no de B.<br>
+    C no puede empezar hasta el día 6 (cuando termina A).<br>
+    B termina el día 4, pero C no arranca hasta el día 6.<br>
+    <strong>Holgura de B = 6 - 4 = 2 días</strong> → B puede retrasarse 2 días sin afectar nada.
+</div>
+
+<!-- ==================== SECCIÓN 5: HITOS ==================== -->
+<h2 id="hitos">5. Los 3 Hitos de Control</h2>
+
+<p>Un <strong>Hito</strong> es un punto de verificación con duración cero. Marca un momento clave del proyecto.</p>
+
+<div class="timeline">
+    <div class="timeline-item">
+        <div class="date">22/06/2026</div>
+        <div class="label">HITO INICIAL<br>Firma de Contrato</div>
+    </div>
+    <span class="timeline-arrow">→</span>
+    <div class="timeline-item">
+        <div class="date">31/07/2026</div>
+        <div class="label">HITO INTERMEDIO<br>Entrega de MVP</div>
+    </div>
+    <span class="timeline-arrow">→</span>
+    <div class="timeline-item">
+        <div class="date">24/08/2026</div>
+        <div class="label">HITO FINAL<br>Cierre Técnico</div>
+    </div>
+</div>
+
+<table>
+    <tr>
+        <th>Hito</th>
+        <th>Fecha</th>
+        <th>¿Qué marca?</th>
+    </tr>
+    <tr>
+        <td><strong>Inicial</strong></td>
+        <td>22/06/2026</td>
+        <td>Firma del contrato con la PyME. Comienza el plazo de 46 días.</td>
+    </tr>
+    <tr>
+        <td><strong>Intermedio</strong></td>
+        <td>31/07/2026</td>
+        <td>Fin de Tarea D (Producción). Las placas están fabricadas, listas para testing.</td>
+    </tr>
+    <tr>
+        <td><strong>Final</strong></td>
+        <td>24/08/2026</td>
+        <td>Entrega documentada, certificados de calidad, cierre del contrato.</td>
+    </tr>
+</table>
+
+<!-- ==================== SECCIÓN 6: CRISIS ==================== -->
+<h2 id="crisis">6. El Problema Sorpresa (Crisis de Humedad)</h2>
+
+<div class="danger-box">
+    <strong>⚠️ PROBLEMA SORPRESA:</strong> Durante la ejecución, la humedad crónica persistió y afectó la Tarea D (Proceso Productivo).
+    <ul>
+        <li>Duración original de D: <strong>16 días</strong></li>
+        <li>Duración real por crisis: <strong>20 días (+4 días)</strong></li>
+    </ul>
+</div>
+
+<h3>Impacto Sin Intervención</h3>
+<table>
+    <tr>
+        <th>Elemento</th>
+        <th>Fecha Original</th>
+        <th>Fecha Desplazada</th>
+        <th>Impacto</th>
+    </tr>
+    <tr>
+        <td>Hito Intermedio (MVP)</td>
+        <td>31/07/2026</td>
+        <td>04/08/2026</td>
+        <td>+4 días</td>
+    </tr>
+    <tr>
+        <td>Hito Final (Cierre)</td>
+        <td>24/08/2026</td>
+        <td>28/08/2026</td>
+        <td style="color: red; font-weight: bold;">+4 días → INCUMPLIMIENTO</td>
+    </tr>
+</table>
+
+<div class="warning-box">
+    <strong>Estado de Alerta:</strong> Si no se hace nada, el proyecto termina el 28/08 en vez del 24/08. Esto significa <strong>incumplimiento del contrato</strong> con la PyME.
+</div>
+
+<!-- ==================== SECCIÓN 7: CRASHING ==================== -->
+<h2 id="crashing">7. Estrategia de Mitigación: Crashing</h2>
+
+<p><strong>Crashing</strong> es una técnica para comprimir la duración del proyecto reduciendo tareas de la ruta crítica (generalmente agregando recursos o trabajando horas extra).</p>
+
+<h3>Reglas del Crashing</h3>
+<ol>
+    <li><strong>Solo comprimir tareas de la Ruta Crítica</strong> (las que tienen holgura 0)</li>
+    <li><strong>No comprimir la tarea afectada por la crisis</strong> (D ya está en problemas, forzarla generaría más fallas)</li>
+    <li><strong>Respetar el Factor 80</strong> (no sobrecargar al personal más allá del 80% de capacidad)</li>
+</ol>
+
+<h3>Solución Aplicada</h3>
+<table>
+    <tr>
+        <th>Tarea</th>
+        <th>Duración Original</th>
+        <th>Duración Crashing</th>
+        <th>Cambio</th>
+        <th>¿Cómo?</th>
+    </tr>
+    <tr>
+        <td>A</td>
+        <td>6 días</td>
+        <td>6 días</td>
+        <td>Sin cambio</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>B</td>
+        <td>4 días</td>
+        <td>4 días</td>
+        <td>Sin cambio</td>
+        <td>No es crítica, no sirve comprimirla</td>
+    </tr>
+    <tr style="background: #c6f6d5;">
+        <td><strong>C</strong></td>
+        <td>8 días</td>
+        <td><strong>6 días</strong></td>
+        <td><strong>-2 días</strong></td>
+        <td>Turnos extra de calibración</td>
+    </tr>
+    <tr style="background: #fed7d7;">
+        <td><strong>D</strong></td>
+        <td>16 días</td>
+        <td><strong>20 días</strong></td>
+        <td><strong>+4 días</strong></td>
+        <td>Afectada por crisis (NO comprimir)</td>
+    </tr>
+    <tr style="background: #c6f6d5;">
+        <td><strong>E</strong></td>
+        <td>12 días</td>
+        <td><strong>10 días</strong></td>
+        <td><strong>-2 días</strong></td>
+        <td>Automatización parcial de pruebas</td>
+    </tr>
+    <tr>
+        <td>F</td>
+        <td>4 días</td>
+        <td>4 días</td>
+        <td>Sin cambio</td>
+        <td>-</td>
+    </tr>
+</table>
+
+<h3>Resultado del Crashing</h3>
+<div class="formula">
+6 (A) + 6 (C) + 20 (D) + 10 (E) + 4 (F) = <strong>46 días laborables</strong> ✓
+</div>
+
+<div class="success-box">
+    <strong>✅ ÉXITO:</strong> El proyecto vuelve a durar 46 días. El Hito Final se mantiene en <strong>24/08/2026</strong>. No hay incumplimiento de contrato.
+</div>
+
+<!-- ==================== SECCIÓN 8: CONCLUSIÓN ==================== -->
+<h2 id="conclusion">8. Conclusión: Postura Reactiva vs Proactiva</h2>
+
+<h3>¿Por qué NO compramos deshumidificadores industriales?</h3>
+
+<div class="warning-box">
+    <strong>Opción Proactiva (RECHAZADA):</strong> Comprar deshumidificadores industriales nuevos.
+    <ul>
+        <li>Aumentaría los Costos Fijos (de $950.000 a quizás $1.200.000+)</li>
+        <li>El Punto de Equilibrio subiría a ~445 unidades o más</li>
+        <li>Con solo 42% de rendimiento, no podríamos producir tantas placas</li>
+        <li>Riesgo de pérdidas operativas</li>
+    </ul>
+</div>
+
+<div class="success-box">
+    <strong>Opción Reactiva (ELEGIDA):</strong> Flexibilidad operativa sin inversión de capital.
+    <ul>
+        <li>Horas extra (aumenta Costo Variable, no Fijo)</li>
+        <li>Explotación del Lazo de Re-proceso (Loop D-E)</li>
+        <li>Crashing en tareas C y E</li>
+        <li>El Punto de Equilibrio se mantiene en 352 unidades</li>
+    </ul>
+</div>
+
+<div class="key-concept">
+    <strong>Conclusión Final:</strong><br>
+    "La decisión de adoptar una postura reactiva protegió los costos fijos estructurales de la PyME, logrando que el punto de equilibrio se mantenga inalterado en 352 unidades."
+</div>
+
+<!-- ==================== SECCIÓN 9: SLIDES ==================== -->
+<h2 id="slides">9. Guía por Diapositiva</h2>
+
+<div class="slide-ref">
+    <h3>📊 SLIDE 1 - Portada</h3>
+    <p>Título del proyecto, integrantes, profesora, curso.</p>
+</div>
+
+<div class="slide-ref">
+    <h3>📊 SLIDE 2 - Contexto & Crisis Operativa</h3>
+    <span class="expositor">👤 Expone: SALINAS FELIPE</span>
+    <h4>Qué decir:</h4>
+    <ul>
+        <li>"Nuestra fábrica de PCBs produce placas de circuito impreso bajo un esquema de producción en serie y continua."</li>
+        <li>"Antes de la crisis, teníamos un 70% de rendimiento operativo. Ahora cayó al 42%."</li>
+        <li>"El problema es el exceso de humedad en el ambiente, que arruina la adherencia del cobre a las pistas."</li>
+    </ul>
+</div>
+
+<div class="slide-ref">
+    <h3>📊 SLIDE 3 - Viabilidad Financiera & Punto de Equilibrio</h3>
+    <span class="expositor">👤 Expone: MUZZI JOAQUÍN</span>
+    <h4>Qué decir:</h4>
+    <ul>
+        <li>"Mi parte es la viabilidad financiera. Calculamos el Punto de Equilibrio de la PyME."</li>
+        <li>"Los costos fijos son $950.000 por mes. El costo variable es $800 por placa. El precio de venta es $3.500."</li>
+        <li>"Con la fórmula PE = CF / (PV - CV), nos da <strong>352 unidades mínimas por mes</strong>."</li>
+        <li>"El margen de contribución es $2.700 por placa, que es lo que queda después de pagar los insumos."</li>
+    </ul>
+    <h4>Si te preguntan "¿Por qué no comprar deshumidificadores?":</h4>
+    <p><em>"Porque aumentaría el costo fijo, y el punto de equilibrio subiría a un número inalcanzable con solo 42% de rendimiento."</em></p>
+</div>
+
+<div class="slide-ref">
+    <h3>📊 SLIDE 4 - Estructura Base del Proyecto (Tareas A-F)</h3>
+    <span class="expositor">👤 Expone: GALVÁN LUANA</span>
+    <h4>Qué decir:</h4>
+    <ul>
+        <li>"El proyecto tiene 6 tareas técnicas."</li>
+        <li>"A es Relevamiento (6 días), B es Logística de insumos (4 días), C es Set-Up (8 días)..."</li>
+        <li>"D es el Proceso Productivo central con 16 días, es la más larga."</li>
+        <li>"E es Testing (12 días) y F es Logística de salida (4 días)."</li>
+    </ul>
+</div>
+
+<div class="slide-ref">
+    <h3>📊 SLIDE 5 - Plan Operativo Ideal (Línea Base)</h3>
+    <span class="expositor">👤 Expone: PORTALUPPI / HRACEK / JUÁREZ / YAVI</span>
+    <h4>Qué decir:</h4>
+    <ul>
+        <li>"El tiempo total ideal del proyecto es de 46 días laborables."</li>
+        <li>"Las tareas A y B arrancan en paralelo el día 0."</li>
+        <li>"C empieza cuando termina A (día 6), y así sucesivamente."</li>
+    </ul>
+</div>
+
+<div class="slide-ref">
+    <h3>📊 SLIDE 6 - Ruta Crítica Inicial y Holguras (CPM)</h3>
+    <span class="expositor">👤 Expone: PORTALUPPI / HRACEK / JUÁREZ / YAVI</span>
+    <h4>Qué decir:</h4>
+    <ul>
+        <li>"Aplicamos el método CPM para identificar la ruta crítica."</li>
+        <li>"La ruta crítica es A → C → D → E → F. Son las tareas con holgura cero."</li>
+        <li>"La única tarea con flexibilidad es B, que tiene 2 días de holgura."</li>
+        <li>"Cualquier retraso en la ruta crítica impacta directo en la fecha de entrega."</li>
+    </ul>
+</div>
+
+<div class="slide-ref">
+    <h3>📊 SLIDE 7 - Los Tres Hitos de Control Operativo</h3>
+    <span class="expositor">👤 Expone: PORTALUPPI / HRACEK / JUÁREZ / YAVI</span>
+    <h4>Qué decir:</h4>
+    <ul>
+        <li>"Definimos 3 hitos de control con duración cero."</li>
+        <li>"El Hito Inicial es la firma del contrato el 22 de junio."</li>
+        <li>"El Hito Intermedio es la entrega del MVP el 31 de julio, cuando termina la producción."</li>
+        <li>"El Hito Final es el cierre técnico el 24 de agosto."</li>
+    </ul>
+</div>
+
+<div class="slide-ref">
+    <h3>📊 SLIDE 8 - Crisis: Impacto del Problema Sorpresa</h3>
+    <span class="expositor">👤 Expone: PORTALUPPI / HRACEK / JUÁREZ / YAVI</span>
+    <h4>Qué decir:</h4>
+    <ul>
+        <li>"Durante la ejecución, la humedad persistente afectó la Tarea D."</li>
+        <li>"La duración pasó de 16 a 20 días, un retraso de 4 días."</li>
+        <li>"Sin intervención, el hito final se iría al 28 de agosto: incumplimiento de contrato."</li>
+    </ul>
+</div>
+
+<div class="slide-ref">
+    <h3>📊 SLIDE 9 - Estrategia de Mitigación: Crashing</h3>
+    <span class="expositor">👤 Expone: PORTALUPPI / HRACEK / JUÁREZ / YAVI</span>
+    <h4>Qué decir:</h4>
+    <ul>
+        <li>"Aplicamos Crashing: comprimir tareas de la ruta crítica para recuperar los 4 días."</li>
+        <li>"La Tarea B NO se comprime porque no es crítica (tiene holgura)."</li>
+        <li>"Comprimimos C de 8 a 6 días con turnos extra de calibración."</li>
+        <li>"Comprimimos E de 12 a 10 días automatizando pruebas."</li>
+        <li>"No comprimimos D porque es la tarea afectada por la crisis."</li>
+    </ul>
+</div>
+
+<div class="slide-ref">
+    <h3>📊 SLIDE 10 - Matriz del Cronograma Reorganizado</h3>
+    <span class="expositor">👤 Expone: PORTALUPPI / HRACEK / JUÁREZ / YAVI</span>
+    <h4>Qué decir:</h4>
+    <ul>
+        <li>"Esta tabla muestra el antes y después del crashing."</li>
+        <li>"D subió de 16 a 20 días (+4), pero C bajó de 8 a 6 (-2) y E bajó de 12 a 10 (-2)."</li>
+        <li>"El resultado: 6 + 6 + 20 + 10 + 4 = 46 días. Cumplimos el plazo."</li>
+    </ul>
+</div>
+
+<div class="slide-ref">
+    <h3>📊 SLIDE 11 - Conclusión de Ingeniería Operativa</h3>
+    <span class="expositor">👤 Expone: TODOS / CIERRE</span>
+    <h4>Qué decir:</h4>
+    <ul>
+        <li>"Adoptamos una postura reactiva en vez de proactiva."</li>
+        <li>"Comprar deshumidificadores hubiese aumentado el costo fijo y movido el punto de equilibrio a niveles inalcanzables."</li>
+        <li>"El lazo de re-proceso y las horas extra nos permitieron absorber la crisis sin comprometer la viabilidad financiera."</li>
+        <li>"El punto de equilibrio se mantuvo en 352 unidades."</li>
+    </ul>
+</div>
+
+<div class="slide-ref">
+    <h3>📊 SLIDE 12 - ¿Preguntas?</h3>
+    <p>Cierre y agradecimiento. Prepararse para preguntas del público.</p>
+</div>
+
+<!-- ==================== SECCIÓN 10: PREGUNTAS ==================== -->
+<h2 id="preguntas">10. Preguntas Frecuentes</h2>
+
+<div class="preguntas-frecuentes">
+    <p class="pregunta">¿Qué es el Punto de Equilibrio?</p>
+    <p class="respuesta">"Es la cantidad mínima de unidades que hay que vender para cubrir todos los costos. Por debajo de 352 placas, la fábrica pierde plata."</p>
+    
+    <p class="pregunta">¿Por qué la Tarea B no es crítica?</p>
+    <p class="respuesta">"Porque B dura 4 días y corre en paralelo con A que dura 6. Como C depende de A y no de B, B puede retrasarse hasta 2 días sin afectar el proyecto."</p>
+    
+    <p class="pregunta">¿Qué es el Crashing?</p>
+    <p class="respuesta">"Es una técnica para comprimir la duración del proyecto reduciendo tareas de la ruta crítica, generalmente agregando recursos o trabajando horas extra."</p>
+    
+    <p class="pregunta">¿Por qué no comprar deshumidificadores industriales?</p>
+    <p class="respuesta">"Porque aumentaría el costo fijo, el punto de equilibrio subiría, y con solo 42% de rendimiento no podríamos producir suficientes placas. Elegiríamos perder plata."</p>
+    
+    <p class="pregunta">¿Qué es el Factor 80?</p>
+    <p class="respuesta">"Asumimos que solo el 80% del tiempo es productivo. El otro 20% se pierde en coordinación, imprevistos, descansos, etc. No podemos comprimir tareas más allá de ese límite."</p>
+    
+    <p class="pregunta">¿Qué pasa si una placa falla en Testing?</p>
+    <p class="respuesta">"Si es falla menor (puentes de estaño, soldadura fría), vuelve a Tarea D para re-trabajo. Si es falla crítica (placa quemada, pistas cortadas), va al scrap."</p>
+    
+    <p class="pregunta">¿Qué significa ES, EF, LS, LF?</p>
+    <p class="respuesta">"ES = cuándo puede empezar como mínimo. EF = cuándo termina si empieza lo antes posible. LS = cuándo puede empezar como máximo sin retrasar. LF = cuándo debe terminar sí o sí."</p>
+    
+    <p class="pregunta">¿Qué es la Holgura?</p>
+    <p class="respuesta">"Es el margen de error o colchón que tiene una tarea. Se calcula LS - ES. Si es cero, la tarea es crítica y no puede retrasarse."</p>
+    
+    <p class="pregunta">¿Qué es un Hito?</p>
+    <p class="respuesta">"Es un punto de control con duración cero que marca un momento clave del proyecto, como la firma del contrato o la entrega final."</p>
+    
+    <p class="pregunta">¿Por qué no se comprime la Tarea D?</p>
+    <p class="respuesta">"Porque D es la tarea afectada por la crisis de humedad. Intentar reducirla forzaría más errores y más fallas. Es mejor compensar comprimiendo C y E."</p>
+</div>
+
+<!-- ==================== SECCIÓN 11: GLOSARIO ==================== -->
+<h2 id="glosario">11. Glosario de Términos</h2>
+
+<table>
+    <tr>
+        <th>Término</th>
+        <th>Definición</th>
+    </tr>
+    <tr>
+        <td><strong>PCB</strong></td>
+        <td>Printed Circuit Board - Placa de circuito impreso</td>
+    </tr>
+    <tr>
+        <td><strong>PyME</strong></td>
+        <td>Pequeña y Mediana Empresa (el cliente)</td>
+    </tr>
+    <tr>
+        <td><strong>CPM</strong></td>
+        <td>Critical Path Method - Método de Ruta Crítica</td>
+    </tr>
+    <tr>
+        <td><strong>Ruta Crítica</strong></td>
+        <td>Secuencia de tareas más larga; determina la duración mínima del proyecto</td>
+    </tr>
+    <tr>
+        <td><strong>Holgura</strong></td>
+        <td>Margen de tiempo que tiene una tarea para retrasarse sin afectar el proyecto</td>
+    </tr>
+    <tr>
+        <td><strong>Crashing</strong></td>
+        <td>Técnica para comprimir la duración del proyecto agregando recursos</td>
+    </tr>
+    <tr>
+        <td><strong>MVP</strong></td>
+        <td>Minimum Viable Product - Producto Mínimo Viable</td>
+    </tr>
+    <tr>
+        <td><strong>Scrap</strong></td>
+        <td>Descarte definitivo de placas irrecuperables</td>
+    </tr>
+    <tr>
+        <td><strong>Lazo de Re-proceso</strong></td>
+        <td>Ciclo donde placas falladas vuelven a producción para corrección</td>
+    </tr>
+    <tr>
+        <td><strong>Factor 80</strong></td>
+        <td>Asunción de que solo el 80% del tiempo es productivo</td>
+    </tr>
+    <tr>
+        <td><strong>Postura Reactiva</strong></td>
+        <td>Responder a la crisis con flexibilidad operativa sin inversión de capital</td>
+    </tr>
+    <tr>
+        <td><strong>Postura Proactiva</strong></td>
+        <td>Anticipar problemas con inversión en infraestructura (rechazada en este caso)</td>
+    </tr>
+    <tr>
+        <td><strong>Condiciones Higrotérmicas</strong></td>
+        <td>Humedad y temperatura del ambiente</td>
+    </tr>
+    <tr>
+        <td><strong>Decapado Químico</strong></td>
+        <td>Proceso de aplicar químicos para crear las pistas de cobre</td>
+    </tr>
+    <tr>
+        <td><strong>Punto de Equilibrio</strong></td>
+        <td>Cantidad mínima de unidades para cubrir costos (ni ganar ni perder)</td>
+    </tr>
+    <tr>
+        <td><strong>Margen de Contribución</strong></td>
+        <td>Precio de Venta - Costo Variable = lo que aporta cada unidad</td>
+    </tr>
+</table>
+
+<hr style="margin: 40px 0;">
+
+<div style="text-align: center; color: #718096; padding: 20px;">
+    <p><strong>Documento generado para la exposición del TP Integrador</strong></p>
+    <p>Gestión de Procesos Productivos - 6º 2ª - Ciclo Lectivo 2026</p>
+    <p>Escuela Técnica Nº 35 "Ing. Eduardo Latzina"</p>
+</div>
+
+</body>
+</html>
